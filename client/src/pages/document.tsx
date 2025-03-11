@@ -14,7 +14,7 @@ export default function DocumentPage() {
     <div className="flex min-h-screen bg-white">
       <Sidebar />
       
-      <main className="ml-[136px] flex-1 p-6 bg-white overflow-y-auto">
+      <main className="ml-[220px] flex-1 p-6 bg-white overflow-y-auto">
         <header className="flex justify-between items-center mb-8">
           <div></div>
           <UserProfile user={user} />

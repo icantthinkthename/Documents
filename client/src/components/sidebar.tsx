@@ -5,42 +5,56 @@ export default function Sidebar() {
   const [location] = useLocation();
   
   return (
-    <aside className="bg-sidebar w-[136px] h-screen flex flex-col justify-between fixed left-0 top-0">
+    <aside className="bg-[#112D4E] w-[220px] h-screen flex flex-col justify-between fixed left-0 top-0">
       <div>
-        <div className="p-4 text-sidebar-foreground flex justify-center">
-          <img src="/logo-bitchat.png" alt="BITCHAT Logo" className="w-20" />
+        <div className="p-4 text-white flex justify-center">
+          <img src="/logo-bitchat.png" alt="BITCHAT Logo" className="w-24" />
         </div>
         
-        <nav className="mt-8">
-          <ul>
+        <nav className="mt-8 px-4">
+          <ul className="space-y-3">
             <li>
-              <Link href="#" className="flex flex-col items-center py-4 text-sidebar-foreground opacity-80 hover:bg-sidebar-accent/10">
-                <Bell className="h-6 w-6" />
-                <span className="mt-1 text-xs">Notification</span>
+              <Link 
+                href="#" 
+                className={`flex items-center gap-3 px-4 py-3 text-white rounded-lg bg-[#1D4A7E] hover:bg-[#1D4A7E]/90`}
+              >
+                <Bell className="h-5 w-5" />
+                <span className="text-base font-medium">Notification</span>
               </Link>
             </li>
             
             <li>
-              <Link href="#" className="flex flex-col items-center py-4 text-sidebar-foreground opacity-80 hover:bg-sidebar-accent/10">
-                <MessageSquare className="h-6 w-6" />
-                <span className="mt-1 text-xs">Messages</span>
+              <Link 
+                href="#" 
+                className={`flex items-center gap-3 px-4 py-3 text-white rounded-lg bg-[#1D4A7E] hover:bg-[#1D4A7E]/90`}
+              >
+                <MessageSquare className="h-5 w-5" />
+                <span className="text-base font-medium">Messages</span>
               </Link>
             </li>
             
             <li>
-              <Link href="/" className={`flex flex-col items-center py-4 text-sidebar-foreground ${location === "/" ? "bg-sidebar-primary" : "hover:bg-sidebar-accent/10"}`}>
-                <FileText className="h-6 w-6" />
-                <span className="mt-1 text-xs">Document</span>
+              <Link 
+                href="/" 
+                className={`flex items-center gap-3 px-4 py-3 text-white rounded-lg ${
+                  location === "/" ? "bg-[#2A5A8F]" : "bg-[#1D4A7E] hover:bg-[#1D4A7E]/90"
+                }`}
+              >
+                <FileText className="h-5 w-5" />
+                <span className="text-base font-medium">Document</span>
               </Link>
             </li>
           </ul>
         </nav>
       </div>
       
-      <div className="mb-6">
-        <Link href="#" className="flex items-center justify-center gap-2 mx-4 text-sidebar-foreground py-2 hover:bg-sidebar-accent/10 rounded">
+      <div className="mb-6 px-4">
+        <Link 
+          href="#" 
+          className="flex items-center gap-2 px-4 py-3 text-white bg-[#1D4A7E] hover:bg-[#1D4A7E]/90 rounded-lg"
+        >
           <LogOut className="h-5 w-5" />
-          <span className="text-sm">Log out</span>
+          <span className="text-base font-medium">Log out</span>
         </Link>
       </div>
     </aside>
