@@ -24,3 +24,23 @@ function App() {
 }
 
 export default App;
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import "./App.css";
+
+function App() {
+  return (
+    <Router>
+      <div className="flex">
+        <Sidebar />
+        <main className="flex-1 p-6">
+          {/* Main content will go here */}
+          <h1 className="text-2xl font-bold">Welcome to BitChat</h1>
+        </main>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
