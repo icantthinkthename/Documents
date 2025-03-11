@@ -12,6 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { LoaderCircle } from "lucide-react";
+import SuccessDialog from "./success-dialog";
 
 interface DocumentFormProps {
   userId: number;
@@ -29,6 +30,7 @@ export default function DocumentForm({ userId }: DocumentFormProps) {
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const { toast } = useToast();
   
   const form = useForm<DocumentFormData>({
@@ -107,34 +109,50 @@ export default function DocumentForm({ userId }: DocumentFormProps) {
     setIsSubmitting(true);
     
     try {
-      // Upload file to Firebase Storage
-      const filePath = `documents/${userId}/${Date.now()}_${data.file.name}`;
-      const fileUrl = await uploadFile(data.file, filePath);
+      // For development without Firebase keys, we'll mock the success and show dialog
+      // In production, this would be replaced with actual Firebase upload
+      let documentId = '';
       
-      // Save document metadata to Firestore
-      const documentData = {
-        userId,
-        documentType: data.documentType,
-        reasonDetails: data.reasonDetails,
-        fileName: data.file.name,
-        fileUrl,
-        fileSize: data.file.size,
-        fileType: data.file.type
-      };
+      if (import.meta.env.VITE_FIREBASE_API_KEY) {
+        // Upload file to Firebase Storage
+        const filePath = `documents/${userId}/${Date.now()}_${data.file.name}`;
+        const fileUrl = await uploadFile(data.file, filePath);
+        
+        // Save document metadata to Firestore
+        const documentData = {
+          userId,
+          documentType: data.documentType,
+          reasonDetails: data.reasonDetails,
+          fileName: data.file.name,
+          fileUrl,
+          fileSize: data.file.size,
+          fileType: data.file.type
+        };
+        
+        documentId = await saveDocumentMetadata(documentData);
+        
+        // Also save to our backend
+        await apiRequest("POST", "/api/documents", {
+          ...documentData,
+          id: documentId
+        });
+      } else {
+        // Save to our backend only for now
+        const documentData = {
+          userId,
+          documentType: data.documentType,
+          reasonDetails: data.reasonDetails,
+          fileName: data.file.name,
+          fileUrl: "placeholder-url",
+          fileSize: data.file.size,
+          fileType: data.file.type
+        };
+        
+        await apiRequest("POST", "/api/documents", documentData);
+      }
       
-      const documentId = await saveDocumentMetadata(documentData);
-      
-      // Also save to our backend
-      await apiRequest("POST", "/api/documents", {
-        ...documentData,
-        id: documentId
-      });
-      
-      toast({
-        title: "Success",
-        description: "Document submitted successfully!",
-        variant: "default",
-      });
+      // Show success dialog instead of toast
+      setShowSuccessDialog(true);
       
       // Reset form after successful submission
       form.reset();
@@ -153,6 +171,12 @@ export default function DocumentForm({ userId }: DocumentFormProps) {
   
   return (
     <div className="max-w-5xl mx-auto">
+      {/* Success Dialog */}
+      <SuccessDialog 
+        open={showSuccessDialog} 
+        onClose={() => setShowSuccessDialog(false)} 
+      />
+      
       <div className="flex items-center gap-5 mb-6">
         <div className="bg-primary rounded-full p-4 flex items-center justify-center w-16 h-16">
           <FileText className="h-8 w-8 text-white" />
