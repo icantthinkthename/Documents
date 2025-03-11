@@ -18,7 +18,7 @@ export default function Sidebar() {
                 href="#" 
                 className={`flex items-center gap-3 px-4 py-3 text-white rounded-lg bg-[#1D4A7E] hover:bg-[#1D4A7E]/90`}
               >
-                <Bell className="h-5 w-5" />
+                <img src="/bell-icon.png" alt="Notification" className="h-5 w-5" />
                 <span className="text-base font-medium">Notification</span>
               </Link>
             </li>
