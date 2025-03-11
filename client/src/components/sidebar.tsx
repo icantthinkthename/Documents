@@ -7,8 +7,8 @@ export default function Sidebar() {
   return (
     <aside className="bg-sidebar w-[136px] h-screen flex flex-col justify-between fixed left-0 top-0">
       <div>
-        <div className="p-4 text-sidebar-foreground">
-          <img src="/bitchat-logo.png" alt="BITCHAT Logo" className="w-28" />
+        <div className="p-4 text-sidebar-foreground flex justify-center">
+          <img src="/logo-bitchat.png" alt="BITCHAT Logo" className="w-20" />
         </div>
         
         <nav className="mt-8">
