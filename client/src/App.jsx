@@ -1,111 +1,97 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Kept original import
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import './index.css';
 
+function ChatArea() {
+  return (
+    <div className="flex flex-col h-full">
+      <div className="flex-1 p-4 overflow-y-auto">
+        <div className="mb-6">
+          <div className="flex items-center mb-4">
+            <input 
+              type="text" 
+              placeholder="Search" 
+              className="w-full p-2 border rounded-md"
+            />
+          </div>
+
+          <div className="border-b pb-2">
+            <h2 className="text-lg font-semibold">History</h2>
+          </div>
+
+          <div className="py-3 border-b">
+            <div className="flex items-center">
+              <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center mr-3">
+                <span className="text-gray-600">IT</span>
+              </div>
+              <div>
+                <div className="font-medium">IT team</div>
+                <div className="text-sm text-gray-500">2 hours ago</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <div className="bg-blue-600 text-white p-3 rounded-lg flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+              </svg>
+              <div>
+                <div>New message</div>
+                <div className="text-xs">Just now</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex-1 p-4 bg-gray-50">
+        <div className="bg-blue-100 p-4 rounded-lg mb-3">
+          <p className="text-blue-800">Welcome to BitChat! How can I assist you today?</p>
+        </div>
+
+        <div className="bg-blue-100 p-4 rounded-lg mb-3">
+          <p className="text-blue-800">What kind of assistance do you need?</p>
+        </div>
+
+        <div className="bg-blue-100 p-4 rounded-lg mb-3">
+          <p className="text-blue-800">Please type a number:</p>
+          <p className="text-blue-800">1. Benefits 2. Compensation 3. Leave and Holidays 4. Learning and Development</p>
+        </div>
+
+        <div className="mt-auto border-t pt-3">
+          <div className="flex items-center">
+            <input 
+              type="text" 
+              placeholder="Ask something..." 
+              className="flex-1 p-2 border rounded-l-md"
+            />
+            <button className="bg-blue-500 text-white p-2 rounded-r-md">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function App() {
-  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
-
-  const toggleProfileDropdown = () => {
-    setShowProfileDropdown(!showProfileDropdown);
-  };
-
   return (
     <Router>
-      <div className="app-container">
-        <Sidebar />
-
-        {/* Top Section: Profile and Notification */}
-        <div className="main-content">
-          <div className="top-section">
-            <div className="notification">
-              <div className="icon">
-                <img src="/bell-icon.png" alt="Bell Icon" />
-              </div>
-              <div className="text">Notification</div>
-            </div>
-
-            <div className="profile-container">
-              <p className="greeting">Hi! <span className="sophia-name" onClick={toggleProfileDropdown}>Sophia Carter</span></p>
-              <img src="/Sophia.png" alt="Sophia Carter" className="profile-img" onClick={toggleProfileDropdown} />
-            </div>
-
-            {/* Profile Dropdown (Initially Hidden) */}
-            <div id="profileDropdown" className={`profile-dropdown ${showProfileDropdown ? 'show' : ''}`}>
-              <div className="dropdown-content">
-                <img src="/Sophia.png" alt="Profile" className="profile-pic" />
-                <h3>Sophia Carter</h3>
-                <p>UX/UI design</p>
-                <p><strong>Employee ID:</strong> 511215551121</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Button Section */}
-          <div className="button-container">
-            <div className="button-text">All</div>
-            <div className="triicon">
-              <img src="/tridown.png" alt="Tri Icon" />
-            </div>
-          </div>
-
+      <div className="flex h-screen bg-white">
+        <div className="w-64 bg-blue-900">
+          <Sidebar />
+        </div>
+        <div className="flex-1">
           <Routes>
-            <Route path="/" element={<div className="content-area">Notification Content Area</div>} />
-            <Route path="/messages" element={<div className="content-area">Messages Content Area</div>} />
-            <Route path="/document" element={
-              <div className="content-area">
-                <div className="flex justify-between items-center mb-8">
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-[#0c2340] rounded-full flex items-center justify-center text-white mr-4">
-                      <span className="text-2xl">📄</span>
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-bold">Document</h2>
-                      <p className="text-gray-600">Fill the required fields below to apply</p>
-                    </div>
-                  </div>
-
-                  {/* Placeholder for profile section -  This section was already in original code */}
-                  <div className="flex items-center">
-                  </div>
-                </div>
-
-                <div className="max-w-3xl">
-                  <div className="mb-6">
-                    <label className="block text-lg font-medium mb-2">Document Type</label>
-                    <div className="relative">
-                      <select className="w-full p-3 bg-[#e9edf4] rounded-lg appearance-none">
-                        <option>Select document type</option>
-                        <option>Vacation Request</option>
-                        <option>Expense Report</option>
-                        <option>Travel Request</option>
-                      </select>
-                      <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                        <span>▼</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mb-6">
-                    <label className="block text-lg font-medium mb-2">Reason Details</label>
-                    <textarea className="w-full p-3 bg-[#e9edf4] rounded-lg h-32" placeholder="Enter details here..."></textarea>
-                  </div>
-
-                  <div className="mb-8">
-                    <label className="block text-lg font-medium mb-2">Attach handover document (pdf, jpg, docx)</label>
-                    <div className="flex">
-                      <button className="bg-[#0c2340] text-white py-3 px-6 rounded-lg mr-2">Choose File</button>
-                      <div className="flex-1 bg-[#e9edf4] rounded-lg"></div>
-                    </div>
-                  </div>
-
-                  <div className="flex space-x-4">
-                    <button className="bg-[#3d6cb9] text-white py-3 px-12 rounded-lg">Submit</button>
-                    <button className="border border-red-500 text-red-500 py-3 px-12 rounded-lg">Reset</button>
-                  </div>
-                </div>
-              </div>
-            } />
+            <Route path="/" element={<ChatArea />} />
+            <Route path="/messages" element={<ChatArea />} />
+            <Route path="/notification" element={<div className="p-4">Notifications page</div>} />
+            <Route path="/documents" element={<div className="p-4">Documents page</div>} />
           </Routes>
         </div>
       </div>
