@@ -4,6 +4,14 @@ import Sidebar from './components/Sidebar';
 import './index.css';
 import DocumentPage from './components/DocumentPage'; // Added import
 
+// Fallback component in case DocumentPage doesn't exist yet
+const DocumentPageFallback = () => (
+  <div className="p-8">
+    <h1 className="text-2xl font-bold">Document Page</h1>
+    <p>Fill the required fields below to apply</p>
+  </div>
+);
+
 
 function ChatArea() {
   return (
