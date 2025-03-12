@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import './index.css';
+import DocumentPage from './components/DocumentPage'; // Added import
 
 
 function ChatArea() {
@@ -89,10 +90,23 @@ function App() {
         </div>
         <div className="flex-1">
           <Routes>
-            <Route path="/" element={<ChatArea />} />
-            <Route path="/messages" element={<ChatArea />} />
-            <Route path="/notification" element={<div className="p-4">Notifications page</div>} />
-            <Route path="/documents" element={<div className="p-4">Documents page</div>} />
+            <Route path="/" element={<DocumentPage />} />
+            <Route path="/documents" element={<DocumentPage />} />
+            <Route path="/messages" element={
+              <div className="p-8">
+                <h1 className="text-2xl font-bold">Messages</h1>
+              </div>
+            } />
+            <Route path="/notification" element={
+              <div className="p-8">
+                <h1 className="text-2xl font-bold">Notifications</h1>
+              </div>
+            } />
+            <Route path="/logout" element={
+              <div className="p-8">
+                <h1 className="text-2xl font-bold">Logout Page</h1>
+              </div>
+            } />
           </Routes>
         </div>
       </div>
