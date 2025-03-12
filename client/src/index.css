@@ -1,4 +1,77 @@
 
+/* Sidebar Styles */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 100vh;
+  background-color: #0B2647;
+  color: white;
+  padding: 20px 0;
+}
+
+.logo {
+  padding: 10px 20px 30px;
+  text-align: center;
+}
+
+.logo img {
+  width: 100px;
+  height: auto;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.nav-item:hover, .nav-item.active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.icon {
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icons */
+.notification-icon::before {
+  content: "🔔";
+}
+
+.messages-icon::before {
+  content: "💬";
+}
+
+.documents-icon::before {
+  content: "📄";
+}
+
+.logout-icon::before {
+  content: "🚪";
+}
+
+.log-out {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

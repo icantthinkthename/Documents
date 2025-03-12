@@ -1,7 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
 import './index.css';
+
+// Added Sidebar component
+function Sidebar() {
+  return (
+    <div className="p-4">
+      <ul>
+        <li>Messages</li>
+        <li>Notifications</li>
+        <li>Documents</li>
+      </ul>
+    </div>
+  );
+}
+
 
 function ChatArea() {
   return (
