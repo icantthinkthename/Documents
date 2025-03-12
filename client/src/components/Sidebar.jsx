@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +10,7 @@ const Sidebar = () => {
           <div>CHAT</div>
         </div>
       </div>
-      
+
       <div className="flex-grow mt-8">
         <nav>
           <ul className="space-y-1">
@@ -42,7 +41,7 @@ const Sidebar = () => {
           </ul>
         </nav>
       </div>
-      
+
       <div className="mb-6">
         <Link 
           to="/logout" 
