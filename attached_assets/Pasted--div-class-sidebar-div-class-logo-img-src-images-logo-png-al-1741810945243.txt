@@ -1,0 +1,55 @@
+<div class="sidebar">
+            <div class="logo">
+                <img src="images/logo.png" alt="BitChat Logo">
+            </div>
+            <nav class="menu">
+                <a href="../Dashboard/index.html" class="menu-item active">
+                    <img src="images/notification.png" alt="Dashboard">
+                    <span>Notification</span>   
+                </a>
+                <a href="../Messages/index.html" class="menu-item">
+                    <img src="images/Messages.png" alt="Messages">
+                    <span>Messages</span>
+                </a>
+                <a href="../Document/index.html" class="menu-item">
+                    <img src="images/Documents.png" alt="Documents">
+                    <span>Documents</span>
+                </a>
+            </nav>
+            <div class="logout" onclick="logout()">
+                <img src="images/LogOut.png" alt="Log Out">
+                <span>Log out</span>
+            </div>
+        </div>
+
+      <!-- Top Section: Profile and Notification -->
+      <div class="top-section">
+          <div class="notification">
+              <div class="icon">
+                  <img src="images/bell.png" alt="Bell Icon">
+              </div>
+              <div class="text">Notification</div>
+          </div>
+
+          <div class="profile-container">
+            <p class="greeting">Hi! <span class="sophia-name">Sophia Carter</span></p>
+            <img src="images/Sophia.png" alt="Sophia Carter" class="profile-img">
+          </div>
+        <!-- Profile Dropdown (Initially Hidden) -->
+          <div id="profileDropdown" class="profile-dropdown">
+            <div class="dropdown-content">
+                <img src="images/Sophia.png" alt="Profile" class="profile-pic">
+                    <h3>Sophia Carter</h3>
+                    <p>UX/UI design</p>
+                    <p><strong>Employee ID:</strong> 511215551121</p>
+                </div>
+            </div>
+      </div>
+
+      <!-- Button Section -->
+      <div class="button-container">
+          <div class="button-text">All</div>
+          <div class="triicon">
+             <img src="images/tridown.png" alt="Tri Icon">
+          </div>
+      </div>
